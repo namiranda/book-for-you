@@ -1,0 +1,27 @@
+{
+  "name": "book-for-you",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/namiranda/book-for-you.git"
+  },
+  "author": "Noelia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/namiranda/book-for-you/issues"
+  },
+  "homepage": "https://github.com/namiranda/book-for-you#readme",
+  "dependencies": {
+    "autoprefixer": "^10.0.3",
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "postcss": "^8.1.10",
+    "tailwindcss": "^2.0.1"
+  }
+}
