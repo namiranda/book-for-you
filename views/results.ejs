@@ -1,0 +1,14 @@
+<%- include('partials/header'); %>
+
+    <h1>Resultados</h1>
+    <% data['items'].forEach(item => { %>
+        <div>
+            <h2>Titulo:
+                <%= item['volumeInfo']['title'] %>
+            </h2>
+            Autor:
+            <%= item['volumeInfo']['auhtors']%>
+        </div>
+        <% }) %>
+            <a href="/">Search Again!</a>
+            <%- include('partials/footer'); %>
