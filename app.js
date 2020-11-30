@@ -18,7 +18,6 @@ app.get('/search', function(req, res) {
 
 app.get('/results', function(req, res) {
     let query = req.query.search;
-    //let url = 'http://openlibrary.org/search.json?q=' + query + '';
     let url = 'http://openlibrary.org/subjects/' + query + '.json?limit=100';
     (async() => {
         try {
@@ -26,14 +25,14 @@ app.get('/results', function(req, res) {
             console.log('statusCode:', response.statusCode);
 
             let data = JSON.parse(response.body);
-            res.render('results', { book: getRandom(data) });
+            res.render('results', { book: getRandomBook(data) });
         } catch (error) {
             console.log('error:', error);
         }
     })();
 })
 
-function getRandom(data) {
+function getRandomBook(data) {
     let max = data['works'].length + 1;
     let random = Math.floor(Math.random() * max);
     let book = {
