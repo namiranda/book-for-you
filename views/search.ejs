@@ -1,8 +1,15 @@
 <%- include('partials/header'); %>
 
-    <h1>Search form</h1>
-    <form action="/results" method="GET">
-        <input type="text" name="search" id="query">
-        <button>submit</button>
-    </form>
+    <h1 class="text-green">Search form</h1>
+    <div class="">
+        <form action="/results" method="GET">
+            <label for="subject">By Subject</label>
+            <div class="border-black">
+                <input type="text" name="search" id="subject">
+            </div>
+
+            <button>submit</button>
+        </form>
+    </div>
+
     <%- include('partials/footer'); %>
