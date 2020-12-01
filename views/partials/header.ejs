@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/stylesheets/css/main.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
     <title>Book For You</title>
 </head>
 
-<body>
+<body class="h-screen flex flex-col">
     <nav>
         <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
             <div class="relative flex items-center justify-between h-16">
@@ -46,10 +48,10 @@
                 <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
 
                     <div class="hidden sm:block sm:ml-6">
-                        <div class="flex space-x-4">
+                        <div class="space-x-8">
 
-                            <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Login</a>
-                            <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Sign Up</a>
+                            <a href="#" class="font-roboto rounded-full py-1 px-6 uppercase text-sm font-medium text-white border-2 border-white hover:text-white hover:bg-gray-700">Login</a>
+                            <a href="#" class="font-roboto rounded-full py-1 px-6 uppercase text-sm font-medium text-red-700 bg-white border-2 border-white  hover:text-white hover:bg-gray-700">Sign Up</a>
 
                         </div>
                     </div>
@@ -59,7 +61,7 @@
                             <button class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu" aria-haspopup="true">
                 <span class="sr-only">Open user menu</span>
                 <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-            < /button>
+            </button>
                         </div>
                         <!--
             Profile dropdown panel, show/hide based on dropdown state.
