@@ -1,18 +1,26 @@
 <%- include('partials/header'); %>
-
-    <h1>Resultados</h1>
-    <img src="http://covers.openlibrary.org/b/ID/<%= book.cover_id%>-L.jpg" alt="">
-    <h2>Titulo:</h2>
-    <h2>
-        <%= book.title %>
-    </h2>
-    <h2>Author:
-        <% book.authors.forEach(author => { %>
+    <div class="grid  bg-white ">
+        <div></div>
+        <main class="place-self-center flex m-4 rounded-xl md:w-1/2 ">
             <div>
-                <%= author.name %>
+                <img src="http://covers.openlibrary.org/b/ID/<%= book.cover_id%>-L.jpg" alt="">
             </div>
-            <% }) %>
-    </h2>
+            <div>
+                <h2 class="font-lora text-3xl text center p-4">
+                    <%= book.title %>
+                </h2>
+                <h2>Author:
+                    <% book.authors.forEach(author => { %>
+                        <div>
+                            <%= author.name %>
+                        </div>
+                        <% }) %>
+                </h2>
+                <a class="my-2 w-auto sm:w-40 text-center font-roboto font-bold rounded-full py-1 px-6 text-black bg-yellow-400" href="/">Search Again!</a>
+            </div>
 
-    <a href="/">Search Again!</a>
+        </main>
+        <div></div>
+    </div>
+
     <%- include('partials/footer'); %>
