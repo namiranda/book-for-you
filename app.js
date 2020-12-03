@@ -3,6 +3,8 @@ const express = require('express'),
     got = require('got');
 
 const app = express();
+const dotenv = require('dotenv');
+dotenv.config();
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static(__dirname + '/public'));
@@ -18,7 +20,7 @@ app.get('/search', function(req, res) {
 
 app.get('/results', function(req, res) {
     let query = req.query.search;
-    let url = 'http://openlibrary.org/subjects/' + query + '.json?limit=100';
+    let url = 'https://www.googleapis.com/books/v1/volumes?q=+subject:' + query + '&key=' + process.env.API_TOKEN;
     (async() => {
         try {
             const response = await got(url);
@@ -32,20 +34,35 @@ app.get('/results', function(req, res) {
     })();
 })
 
+/**
+ * Devuelve un objeto book, que contiene la informacion del libro seleccionado aleatoriamente
+ * @param {JSON} data 
+ */
 function getRandomBook(data) {
-    let max = data['works'].length + 1;
+    let max = data['items'].length;
     let random = Math.floor(Math.random() * max);
     let book = {
-        title: data['works'][random]['title'],
-        authors: data['works'][random]['authors'],
-        cover_id: data['works'][random]['cover_id']
+        title: data['items'][random]['volumeInfo']['title'],
+        authors: data['items'][random]['volumeInfo']['authors'],
+        description: data['items'][random]['volumeInfo']['description'],
+        cover_url: formattedCover(data['items'][random]['volumeInfo']['imageLinks']['thumbnail'])
     }
-    console.log(data['works'][random]);
-
-    console.log(book.authors[0]['name']);
-
+    console.log(data['items'][random]);
+    console.log(book.cover_url);
     return book;
 };
 
+/**
+ * Devuelve un link a una imagen de portada de mayor tamaño, en caso de estar disponible
+ * @param {String} url 
+ */
+function formattedCover(url) {
+    let index = url.indexOf('zoom=1');
+    let start = url.slice(0, index);
+    let end = url.slice(url.indexOf('&edge'));
+    let newUrl = start + 'zoom=50' + end;
+
+    return newUrl;
+}
 
 app.listen(3000);
