@@ -54,13 +54,21 @@ function getRandomBook(data) {
     let book = {
         title: data['items'][random]['volumeInfo']['title'],
         authors: data['items'][random]['volumeInfo']['authors'],
-        cover_id: data['items'][random]['volumeInfo']['imageLinks']['thumbnail']
+        description: data['items'][random]['volumeInfo']['description'],
+        cover_id: formattedCover(data['items'][random]['volumeInfo']['imageLinks']['thumbnail'])
     }
     console.log(data['items'][random]);
-
-    //console.log(book.authors[0]['name']);
+    console.log(book.cover_id);
     return book;
 };
 
+function formattedCover(url) {
+    let index = url.indexOf('zoom=1');
+    let start = url.slice(0, index);
+    let end = url.slice(url.indexOf('&edge'));
+    let newUrl = start + 'zoom=50' + end;
+
+    return newUrl;
+}
 
 app.listen(3000);
