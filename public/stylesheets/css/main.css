@@ -31185,6 +31185,13 @@ body {
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
 }
 
+.text-limit {
+  width: 50ch;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
