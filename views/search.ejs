@@ -1,15 +1,21 @@
 <%- include('partials/header'); %>
 
-    <h1 class="text-green">Search form</h1>
-    <div class="">
-        <form action="/results" method="GET">
-            <label for="subject">By Subject</label>
-            <div class="border-black">
-                <input type="text" name="search" id="subject">
-            </div>
+    <div class="bg-white p-6 space-y-6 flex flex-col justify-center h-screen md:rounded-xl md:h-auto">
+        <p class="text-gray-600 text-center text-lg">Enter a subject you like and the site will provide book recommendations and suggestions for what to read next.</p>
 
-            <button>submit</button>
-        </form>
+        <div class="">
+            <form action="/results" method="GET">
+
+                <div class="my-4 flex rounded-md shadow-xl border border-gray-100">
+                    <input type="text" class="p-3 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" name="search" placeholder="e.g. cats, japan, ...">
+                    <span class="inline-flex"><button class="inline p-3 border-indigo-500">
+                        <i class="text-red-500 fas fa-search"></i></button></span>
+                </div>
+
+            </form>
+        </div>
+        <img src="/img/search_engine.png" alt="">
     </div>
+
 
     <%- include('partials/footer'); %>
