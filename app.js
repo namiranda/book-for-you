@@ -20,6 +20,7 @@ app.get('/search', function(req, res) {
 
 app.get('/results', function(req, res) {
     let query = req.query.search;
+    console.log(query);
     let url = 'https://www.googleapis.com/books/v1/volumes?q=+subject:' + query + '&key=' + process.env.API_TOKEN;
     (async() => {
         try {
@@ -65,4 +66,4 @@ function formattedCover(url) {
     return newUrl;
 }
 
-app.listen(3000);
+app.listen(process.env.PORT);
