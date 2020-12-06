@@ -66,4 +66,4 @@ function formattedCover(url) {
     return newUrl;
 }
 
-app.listen(3000);
+app.listen(process.env.PORT);
