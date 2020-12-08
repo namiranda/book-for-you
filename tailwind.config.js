@@ -1,7 +1,7 @@
 module.exports = {
     purge: {
         enabled: true,
-        content: ['./public/**/*.js', './views/**/*.ejs'],
+        content: ['./public/script/*.js', './views/**/*.ejs']
     },
     darkMode: false, // or 'media' or 'class'
     theme: {
@@ -13,11 +13,10 @@ module.exports = {
                 '3/4': '75%',
                 'full': '100%',
             }
-        },
-
+        }
     },
     variants: {
         extend: {},
     },
     plugins: [],
-}
+};
