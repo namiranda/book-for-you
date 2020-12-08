@@ -1,9 +1,9 @@
 <%- include('partials/header'); %>
     <div class="grid bg-white sm:bg-transparent	">
 
-        <main class="place-self-center sm:bg-white p-6 flex flex-col md:flex-row m-4 rounded-xl sm:w-2/3 lg:w-3/5 ">
+        <main id="main" class="place-self-center sm:bg-white p-6 flex flex-col md:flex-row m-4 rounded-xl sm:w-2/3 lg:w-3/5 ">
             <div class=" md:w-1/2 ">
-                <img class="min-w-300 " src="<%= book.cover_url %> " alt="">
+                <img class="min-w-300 " src="<%= book.cover_url %> " alt="<%= book.title %> book cover">
             </div>
             <div class="md:w-1/2 md:px-4">
                 <h2 class="font-lora text-3xl text center py-4 md:pt-0">
