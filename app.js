@@ -28,7 +28,13 @@ app.get('/results', function(req, res) {
             console.log('statusCode:', response.statusCode);
 
             let data = JSON.parse(response.body);
-            res.render('results', { book: getRandomBook(data) });
+            if (typeof data['items'] === 'undefined') { //Si la API no devuelve una lista vacia
+                res.render('error');
+            } else {
+                res.render('results', { book: getRandomBook(data) });
+            }
+
+
         } catch (error) {
             console.log('error:', error);
         }
@@ -55,13 +61,14 @@ function getRandomBook(data) {
 
 /**
  * Devuelve un link a una imagen de portada de mayor tamaño, en caso de estar disponible
+ * Ademas cambia http por https
  * @param {String} url 
  */
 function formattedCover(url) {
     let index = url.indexOf('zoom=1');
-    let start = url.slice(0, index);
+    let start = url.slice(url.indexOf('//books'), index);
     let end = url.slice(url.indexOf('&edge'));
-    let newUrl = start + 'zoom=50' + end;
+    let newUrl = 'https:' + start + 'zoom=50' + end;
 
     return newUrl;
 }
