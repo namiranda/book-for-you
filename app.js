@@ -29,10 +29,11 @@ app.get('/results', function(req, res) {
 
             let data = JSON.parse(response.body);
             if (typeof data['items'] === 'undefined') { //Si la API no devuelve una lista vacia
-                res.send('Try again');
-
+                res.render('error');
+            } else {
+                res.render('results', { book: getRandomBook(data) });
             }
-            res.render('results', { book: getRandomBook(data) });
+
 
         } catch (error) {
             console.log('error:', error);
