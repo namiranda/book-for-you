@@ -6,7 +6,7 @@ const express = require("express"),
     localStrategy = require("passport-local"),
     passportLocalMongoose = require("passport-local-mongoose");
 
-const User = require("./models/user.js");
+const User = require("./models/user");
 
 const app = express();
 const dotenv = require("dotenv");
@@ -37,6 +37,11 @@ passport.use(new localStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+app.use(function(req, res, next) {
+    res.locals.currentUser = req.user;
+    next();
+})
+
 app.get("/", function(req, res) {
     res.render("landing");
 });
@@ -53,7 +58,7 @@ app.post("/register", function(req, res) {
             return res.render("register");
         }
         passport.authenticate("local")(req, res, function() {
-            res.redirect("/");
+            res.redirect("/login");
         });
     });
 });
@@ -61,6 +66,11 @@ app.post("/register", function(req, res) {
 app.get('/login', function(req, res) {
     res.render('login');
 })
+
+app.post('/login', passport.authenticate('local', {
+    successRedirect: '/search',
+    failureRedirect: '/login'
+}), function(req, res) {})
 
 app.get("/search", function(req, res) {
     res.render("search");
