@@ -1,7 +1,12 @@
 const express = require("express"),
     bodyParser = require("body-parser"),
     got = require("got"),
-    mongoose = require("mongoose");
+    mongoose = require("mongoose"),
+    passport = require("passport"),
+    localStrategy = require("passport-local"),
+    passportLocalMongoose = require("passport-local-mongoose");
+
+const User = require("./models/user.js");
 
 const app = express();
 const dotenv = require("dotenv");
@@ -18,8 +23,39 @@ mongoose.connect(process.env.DB_TOKEN, {
     useCreateIndex: true,
 });
 
+//Passport config
+app.use(
+    require("express-session")({
+        secret: "The cake is a lie",
+        resave: false,
+        saveUninitialized: false,
+    })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new localStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 app.get("/", function(req, res) {
     res.render("landing");
+});
+
+app.get("/register", function(req, res) {
+    res.render("register");
+});
+
+app.post("/register", function(req, res) {
+    const newUser = new User({ username: req.body.username });
+    User.register(newUser, req.body.password, function(err, user) {
+        if (err) {
+            console.log(err);
+            return res.render("register");
+        }
+        passport.authenticate("local")(req, res, function() {
+            res.redirect("/");
+        });
+    });
 });
 
 app.get("/search", function(req, res) {
