@@ -7,6 +7,7 @@ const express = require("express"),
     passportLocalMongoose = require("passport-local-mongoose");
 
 const User = require("./models/user");
+const Book = require("./models/book");
 
 const app = express();
 const dotenv = require("dotenv");
@@ -107,6 +108,38 @@ app.get("/results", function(req, res) {
     })();
 });
 
+let book;
+
+app.post('/:user_id/save', function(req, res) {
+    User.findById(req.params.user_id, function(err, user) {
+        if (err) {
+            console.log(err);
+        } else {
+
+            Book.create({
+                    title: book.title,
+                    authors: book.authors,
+                    publisher: book.publisher,
+                    publishedDate: book.publishedDate,
+                    thumbnail: book.cover_url,
+                    infoLink: book.infoLink,
+                }, function(err, newBook) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        user.books.push(newBook);
+                        user.save();
+                        //TODO: agregar flash message de success
+                        res.redirect("/search"); //TODO: cambiar 
+                    }
+                }
+
+            )
+
+        }
+    })
+})
+
 /**
  * Devuelve un objeto book, que contiene la informacion del libro seleccionado aleatoriamente
  * @param {JSON} data
@@ -114,13 +147,17 @@ app.get("/results", function(req, res) {
 function getRandomBook(data) {
     let max = data["items"].length;
     let random = Math.floor(Math.random() * max);
-    let book = {
+    book = {
         title: data["items"][random]["volumeInfo"]["title"],
         authors: data["items"][random]["volumeInfo"]["authors"],
         description: data["items"][random]["volumeInfo"]["description"],
         cover_url: formattedCover(
             data["items"][random]["volumeInfo"]["imageLinks"]["thumbnail"]
         ),
+        publisher: data["items"][random]["volumeInfo"]["publisher"],
+        publishedDate: data["items"][random]["volumeInfo"]["publishedDate"],
+        //thumbnail: String,
+        infoLink: data["items"][random]["volumeInfo"]["infoLink:"],
     };
     console.log(data["items"][random]);
     console.log(book.cover_url);
