@@ -168,7 +168,7 @@ function getRandomBook(data) {
         publisher: data["items"][random]["volumeInfo"]["publisher"],
         publishedDate: data["items"][random]["volumeInfo"]["publishedDate"],
         //thumbnail: String,
-        infoLink: data["items"][random]["volumeInfo"]["infoLink:"],
+        infoLink: data["items"][random]["volumeInfo"]["infoLink"]
     };
     console.log(data["items"][random]);
     console.log(book.cover_url);
