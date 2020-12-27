@@ -4,7 +4,8 @@ const express = require("express"),
     mongoose = require("mongoose"),
     passport = require("passport"),
     localStrategy = require("passport-local"),
-    passportLocalMongoose = require("passport-local-mongoose");
+    methodOverride = require("method-override");
+passportLocalMongoose = require("passport-local-mongoose");
 
 const User = require("./models/user");
 const Book = require("./models/book");
@@ -16,6 +17,7 @@ dotenv.config();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
+app.use(methodOverride('_method'));
 
 mongoose.connect(process.env.DB_TOKEN, {
     useNewUrlParser: true,
@@ -149,6 +151,17 @@ app.get("/:user_id/saved", function(req, res) { //aca va un middleware
         }
     })
 
+})
+
+app.delete("/:user_id/saved/:book_id", function(req, res) {
+    Book.findOneAndRemove(req.params.book_id, function(err, book) {
+        if (err) {
+            console.log(err);
+        } else {
+            //TODO:mostrar flash message
+            res.redirect("/" + req.params.user_id + "/saved");
+        }
+    })
 })
 
 /**
