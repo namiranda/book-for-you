@@ -1128,6 +1128,10 @@ video {
   width: 12rem;
 }
 
+.w-64 {
+  width: 16rem;
+}
+
 .w-auto {
   width: auto;
 }
@@ -1360,6 +1364,10 @@ body {
     width: 10rem;
   }
 
+  .sm\:w-72 {
+    width: 18rem;
+  }
+
   .sm\:w-2\/3 {
     width: 66.666667%;
   }
@@ -1424,6 +1432,10 @@ body {
 
   .md\:w-24 {
     width: 6rem;
+  }
+
+  .md\:w-96 {
+    width: 24rem;
   }
 
   .md\:w-1\/2 {

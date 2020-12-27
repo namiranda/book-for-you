@@ -23,7 +23,7 @@
                     <%= book.description %>
                 </p>
                 <% if (currentUser) { %>
-                    <form action="/<%= currentUser._id %>/save" method="POST">
+                    <form class="inline" action="/<%= currentUser._id %>/save" method="POST">
                         <button><a class="my-4 w-auto sm:w-40 text-center font-roboto font-bold rounded-full py-2 px-6 text-black bg-yellow-400" >Save</a>
                         </button>
                     </form>

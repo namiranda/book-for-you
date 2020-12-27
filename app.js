@@ -129,10 +129,11 @@ app.post('/:user_id/save', function(req, res) {
                     if (err) {
                         console.log(err);
                     } else {
+                        newBook.save();
                         user.books.push(newBook);
                         user.save();
                         //TODO: agregar flash message de success
-                        res.redirect("/search"); //TODO: cambiar 
+                        res.redirect("/" + req.params.user_id + "/saved");
                     }
                 }
 
@@ -154,7 +155,7 @@ app.get("/:user_id/saved", function(req, res) { //aca va un middleware
 })
 
 app.delete("/:user_id/saved/:book_id", function(req, res) {
-    Book.findOneAndRemove(req.params.book_id, function(err, book) {
+    Book.findByIdAndRemove(req.params.book_id, function(err) {
         if (err) {
             console.log(err);
         } else {
