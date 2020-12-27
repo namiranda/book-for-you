@@ -140,6 +140,17 @@ app.post('/:user_id/save', function(req, res) {
     })
 })
 
+app.get("/:user_id/saved", function(req, res) { //aca va un middleware
+    User.findById(req.params.user_id).populate("books").exec(function(err, user) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render("savedbooks", { user: user });
+        }
+    })
+
+})
+
 /**
  * Devuelve un objeto book, que contiene la informacion del libro seleccionado aleatoriamente
  * @param {JSON} data
