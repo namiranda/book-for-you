@@ -4,8 +4,8 @@ const express = require("express"),
     mongoose = require("mongoose"),
     passport = require("passport"),
     localStrategy = require("passport-local"),
-    methodOverride = require("method-override");
-passportLocalMongoose = require("passport-local-mongoose");
+    methodOverride = require("method-override"),
+    passportLocalMongoose = require("passport-local-mongoose");
 
 const User = require("./models/user");
 const Book = require("./models/book");

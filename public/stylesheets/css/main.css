@@ -1112,6 +1112,10 @@ video {
   text-transform: uppercase;
 }
 
+.underline {
+  text-decoration: underline;
+}
+
 .w-6 {
   width: 1.5rem;
 }
