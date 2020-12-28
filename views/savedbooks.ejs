@@ -4,9 +4,7 @@
         <main id="main" class="sm:bg-white sm:m-6 md:mx-10 lg:mx-14 p-6 rounded-xl  ">
             <h1 class="font-lora font-bold text-3xl text-red-400">
                 <%= user.username %>'s List </h1>
-            <h1>
-                <%= currentUser.books.length %>
-            </h1>
+
             <% if(!currentUser.books.length){%>
                 <div class="grid">
                     <img class="place-self-center w-64 sm:w-72 md:w-96" src="/img/question_two_color.png" alt="">

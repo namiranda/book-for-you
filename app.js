@@ -12,6 +12,7 @@ const Book = require("./models/book");
 
 const app = express();
 const dotenv = require("dotenv");
+const { findById } = require("./models/user");
 dotenv.config();
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -160,6 +161,14 @@ app.delete("/:user_id/saved/:book_id", function(req, res) {
             console.log(err);
         } else {
             //TODO:mostrar flash message
+            User.findById(req.params.user_id).exec(function(err, user) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    user.books.pull({ _id: req.params.book_id });
+                    user.save();
+                }
+            })
             res.redirect("/" + req.params.user_id + "/saved");
         }
     })
