@@ -2,98 +2,149 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/stylesheets/css/main.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/css/main.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Roboto&display=swap" rel="stylesheet" />
     <title>Book For You</title>
 </head>
 
-<body class="h-full flex flex-col">
+<body class="h-screen flex flex-col">
     <a class="skip-link" href="#main">Skip to main</a>
 
     <nav>
         <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
             <div class="relative flex items-center justify-between h-16">
                 <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                    <!-- Mobile menu button-->
-                    <button id="burger" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-red-700 hover:bg-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-expanded="false">
-          <span class="sr-only">Open main menu</span>
-          <!-- Icon when menu is closed. -->
-          <!--
-            Heroicon name: menu
+                    <% if (!currentUser) { %>
 
-            Menu open: "hidden", Menu closed: "block"
-          -->
-          <svg id="menu" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-          <!-- Icon when menu is open. -->
-          <!--
-            Heroicon name: x
+                        <!-- Mobile menu button-->
+                        <button id="burger" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-red-700 hover:bg-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-expanded="false">
+                          <span class="sr-only">Open main menu</span>
+                      <!-- Icon when menu is closed. -->
+                      <!--
+                    Heroicon name: menu
 
-            Menu open: "block", Menu closed: "hidden"
-          -->
-          <svg id="x" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
+                    Menu open: "hidden", Menu closed: "block"
+                  -->
+                    <svg
+                      id="menu"
+                      class="block h-6 w-6"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16"
+                      />
+                    </svg>
+                    <!-- Icon when menu is open. -->
+                    <!--
+                  Heroicon name: x
+
+                  Menu open: "block", Menu closed: "hidden"
+                -->
+                    <svg
+                      id="x"
+                      class="hidden h-6 w-6"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
+                        <% } %>
                 </div>
                 <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                     <div class="flex-shrink-0 flex items-center">
-
-                        <a href="/"><img class="h-16 w-auto" src="/img/logo.png" alt="Book For You"></a>
+                        <a href="/"><img class="h-16 w-auto" src="/img/logo.png" alt="Book For You" /></a>
                     </div>
-
                 </div>
                 <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-
-                    <div class="hidden sm:block sm:ml-6">
-                        <div class="space-x-8">
-
-                            <a href="#" class="font-roboto rounded-full py-1 px-6 uppercase text-sm font-medium text-white border-2 border-white hover:text-white hover:bg-gray-700">Login</a>
-                            <a href="#" class="font-roboto rounded-full py-1 px-6 uppercase text-sm font-medium text-red-700 bg-white border-2 border-white  hover:text-white hover:bg-gray-700">Sign Up</a>
-
+                    <% if (!currentUser) { %>
+                        <div class="hidden sm:block sm:ml-6">
+                            <div class="space-x-8">
+                                <a href="/login" class="font-roboto rounded-full py-1 px-6 uppercase text-sm font-medium text-white border-2 border-white hover:text-black hover:bg-white">Login</a>
+                                <a href="/register" class="font-roboto rounded-full py-1 px-6 uppercase text-sm font-medium text-red-700 bg-white border-2 border-white hover:text-black hover:bg-yellow-400 hover:border-yellow-400">Sign Up</a>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Profile dropdown -->
-                    <div class="hidden ml-3 relative">
-                        <div>
-                            <button class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu" aria-haspopup="true">
-                <span class="sr-only">Open user menu</span>
-                <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-            </button>
-                        </div>
-                        <!--
-            Profile dropdown panel, show/hide based on dropdown state.
 
-            Entering: "transition ease-out duration-100"
-              From: "transform opacity-0 scale-95"
-              To: "transform opacity-100 scale-100"
-            Leaving: "transition ease-in duration-75"
-              From: "transform opacity-100 scale-100"
-              To: "transform opacity-0 scale-95"
-          -->
-                        <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Your Profile</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Settings</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Sign out</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+                        <% } else { %>
+
+                            <div class=" ml-3 relative">
+                                <div>
+                                    <button class="bg-white flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu" aria-haspopup="true">
+                                    <span class="sr-only">Open user menu</span>
+                                                              
+                                    <img class="h-8 w-8 rounded-full" src="https://img.icons8.com/dusk/64/000000/cat.png"
+                                    alt=""/>
+                                  </button>
+                                </div>
+                                <!-- Profile dropdown -->
+                                <!--
+        Profile dropdown panel, show/hide based on dropdown state.
+
+        Entering: "transition ease-out duration-100"
+          From: "transform opacity-0 scale-95"
+          To: "transform opacity-100 scale-100"
+        Leaving: "transition ease-in duration-75"
+          From: "transform opacity-100 scale-100"
+          To: "transform opacity-0 scale-95"
+      -->
+                                <div id="profile-dropdown" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
+                                    <a href="/<%= currentUser._id %>/saved " class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Your List</a
+            >
+           
+            <a
+              href="/logout"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              role="menuitem"
+              >Sign out</a
+            >
+          </div>
         </div>
+                                <% } %>
+          </div>
+        </div>
+      </div>
 
+      <% if (!currentUser) { %>
+       
         <!--
-    Mobile menu, toggle classes based on menu state.
-
-    Menu open: "block", Menu closed: "hidden"
-  -->
+      Mobile menu, toggle classes based on menu state.
+  
+      Menu open: "block", Menu closed: "hidden"
+    -->
         <div id="mobile-menu" class="hidden sm:hidden">
-            <div class="px-2 pt-2 pb-3 space-y-3">
-                <a href="#" class="block text-center font-roboto rounded-full py-1 px-6 uppercase text-sm font-medium text-white border-2 border-white hover:text-white hover:bg-gray-700">Login</a>
-                <a href="#" class="block text-center font-roboto rounded-full py-1 px-6 uppercase text-sm font-medium text-red-700 bg-white border-2 border-white  hover:text-white hover:bg-gray-700">Sign Up</a>
-            </div>
+          <div class="px-2 pt-2 pb-3 space-y-3">
+            <a
+              href="/login"
+              class="block text-center font-roboto rounded-full py-1 px-6 uppercase text-sm font-medium text-white border-2 border-white  hover:text-black hover:bg-white"
+              >Login</a
+            >
+            <a
+              href="/register"
+              class="block text-center font-roboto rounded-full py-1 px-6 uppercase text-sm font-medium text-red-700 bg-white border-2 border-white hover:text-black hover:bg-yellow-400 hover:border-yellow-400"
+              >Sign Up</a
+            >
+          </div>
         </div>
+      <% } %>
     </nav>
+  </body>
+</html>
