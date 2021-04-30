@@ -1,3 +1,5 @@
+/*! tailwindcss v2.0.3 | MIT License | https://tailwindcss.com */
+
 /*! modern-normalize v1.0.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
 
 /*
@@ -411,15 +413,18 @@ textarea {
 }
 
 input::-moz-placeholder, textarea::-moz-placeholder {
+  opacity: 1;
   color: #9ca3af;
 }
 
 input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+  opacity: 1;
   color: #9ca3af;
 }
 
 input::placeholder,
 textarea::placeholder {
+  opacity: 1;
   color: #9ca3af;
 }
 
@@ -559,11 +564,6 @@ video {
 .bg-gray-200 {
   --tw-bg-opacity: 1;
   background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
-}
-
-.bg-gray-800 {
-  --tw-bg-opacity: 1;
-  background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
 }
 
 .bg-red-500 {
@@ -834,6 +834,10 @@ video {
 
 .mb-4 {
   margin-bottom: 1rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
 }
 
 .max-h-full {
@@ -1414,6 +1418,11 @@ body {
   .md\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
+  }
+
+  .md\:my-2 {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 
   .md\:mx-10 {
